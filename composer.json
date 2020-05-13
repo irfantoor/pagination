@@ -1,0 +1,28 @@
+{
+    "name": "irfantoor/pagination",
+    "description": "Irfan's pagination - Creates normal or reversed pagination",
+    "keywords": [
+        "pagination", "asending", "desending", "normal", "reversed"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Irfan TOOR",
+            "email": "email@irfantoor.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3"
+    },
+    "require-dev": {
+        "irfantoor/test": "^0.6.2",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "IrfanTOOR\\": "src/",
+            "Tests\\": "tests/classes/"
+        }
+    }
+}

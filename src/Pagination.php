@@ -1,71 +1,37 @@
 <?php
+
 /**
  * IrfanTOOR\Pagination
  * php version 7.3
  *
- * @package   IrfanTOOR\Database
  * @author    Irfan TOOR <email@irfantoor.com>
- * @copyright 2020 Irfan TOOR
+ * @copyright 2021 Irfan TOOR
  */
+
 namespace IrfanTOOR;
 
 use Exception;
 use Throwable;
 
 /**
- * Pagination
- * 
- * Creates normal or reversed pagination
+ * Pagination -- Creates normal or reversed pagination
  */
 class Pagination
 {
-    /**
-     * Package name
-     *
-     * @var const
-     */
-    const NAME = "Irfan's Pagination";
-
-    /**
-     * Package description
-     *
-     * @var const
-     */
+    const NAME        = "Irfan's Pagination";
     const DESCRIPTION = "Creates normal or reversed pagination";
+    const VERSION     = "0.2";
 
-    /**
-     * Version
-     *
-     * @var const
-     */
-    const VERSION = "0.1"; // @@VERSION
-
-    /**
-     * Base url to be used during pagination
-     *
-     * @var string
-     */
+    /** @var string Base url to be used during pagination */
     protected $base_url = "/";
 
-    /**
-     * Number of results present per page
-     *
-     * @var int
-     */
+    /** @var int Number of results present per page */
     protected $per_page = 10;
 
-    /**
-     * Interval of pages to be printed while preparing pagination
-     *
-     * @var int
-     */
+    /** @var int Interval of pages to be printed while preparing pagination */
     protected $int_pages = 5;
 
-    /**
-     * Name of the page component in URL, used to extract the page number from $_GET
-     *
-     * @var const
-     */
+    /** @var const Name of the page component in URL, extracts from $_GET */
     protected $page_component = 'page';
 
     /**
@@ -75,17 +41,14 @@ class Pagination
      */
     public function __construct($options = [])
     {
-        if (isset($options['base_url'])) {
+        if (isset($options['base_url']))
             $this->setBaseUrl($options['base_url']);
-        }
 
-        if (isset($options['per_page'])) {
+        if (isset($options['per_page']))
             $this->setPerPage($options['per_page']);
-        }
 
-        if (isset($options['int_pages'])) {
+        if (isset($options['int_pages']))
             $this->setIntermediatePages($options['int_pages']);
-        }
     }
 
     /**
@@ -161,7 +124,7 @@ class Pagination
      *
      * @return mixed Associative array containing the pagination information or null
      */
-    private function _process(int $total)
+    protected function process(int $total)
     {
         $per_page  = $this->per_page;
         $last      = ceil($total / $per_page);
@@ -210,7 +173,7 @@ class Pagination
     }    
 
     /**
-     * Retrieve the pagination html
+     * Prepares the pagination html
      * 
      * NOTE: it retrieves the current page from $_GET['page']
      *
@@ -221,15 +184,15 @@ class Pagination
      */
     public function html(int $total, bool $reverse = false) :string
     {
-        $data = $this->_process($total);
+        $data = $this->process($total);
 
         if (!$data) {
             return '';
         }
 
         return $reverse
-            ? $this->_reversePagination($data)
-            : $this->_normalPagination($data);
+            ? $this->reversePagination($data)
+            : $this->normalPagination($data);
     }
 
     /**
@@ -239,7 +202,7 @@ class Pagination
      *
      * @return string Html block which can be displayed directly in an html page
      */
-    private function _normalPagination($data): string
+    protected function normalPagination($data): string
     {
         extract($data);
 
@@ -293,7 +256,7 @@ class Pagination
      *
      * @return string Html block which can be displayed directly in an html page
      */
-    private function _reversePagination(array $data): string
+    protected function reversePagination(array $data): string
     {
         extract($data);
 

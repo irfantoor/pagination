@@ -1,6 +1,6 @@
 {
     "name": "irfantoor/pagination",
-    "description": "Irfan's pagination - Creates normal or reversed pagination",
+    "description": "Creates normal or reversed pagination",
     "keywords": [
         "pagination", "asending", "desending", "normal", "reversed"
     ],
@@ -16,8 +16,7 @@
         "php": ">=7.3"
     },
     "require-dev": {
-        "irfantoor/test": "^0.6.2",
-        "squizlabs/php_codesniffer": "^3.5"
+        "irfantoor/test": "~0.7"
     },
     "autoload": {
         "psr-4": {
